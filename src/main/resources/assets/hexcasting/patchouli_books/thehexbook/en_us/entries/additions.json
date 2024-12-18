@@ -1,0 +1,26 @@
+{
+    "name": "hexcastingadditions.book",
+    "category": "hexcasting:patterns",
+    "icon": "textures/entity/enderdragon/dragon_fireball.png",
+    "sortnum": 15,
+    "advancement": "hexcasting:root",
+    "read_by_default": true,
+    "pages": [
+      {
+        "type": "hexcasting:pattern",
+        "op_id": "hexcastingadditions:chat",
+        "anchor": "hexcastingadditions:chat",
+        "input": "any",
+        "output": "",
+        "text": "hexcastingadditions.chat"
+      },
+      {
+        "type": "hexcasting:pattern",
+        "op_id": "hexcastingadditions:asynch",
+        "anchor": "hexcastingadditions:asynch",
+        "input": "num, [pattern] | pattern",
+        "output": "",
+        "text": "hexcastingadditions.asynch"
+      }
+    ]
+}

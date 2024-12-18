@@ -1,0 +1,9 @@
+{
+  "hexcastingadditions.asynch": "runs a spell after the given delay; however any spells that come after it will not wait and will be ran at the same time",
+  "hexcastingadditions.chat": "everyone will see the given value in chat",
+  "hexcasting.action.hexcastingadditions:chat": "Carrier's Number",
+  "hexcasting.action.hexcastingadditions:asynch": "Veil's Gambit",
+  "hexcasting.action.hexcastingadditions:chat": "Carrier's Gambit",
+  "hexcasting.action.hexcastingadditions:asynch": "Veil's Gambit",
+  "hexcastingadditions.book": "Additional Patterns"
+}
