@@ -1,6 +1,7 @@
 package net.mcsweatshop.hexcastingadditions;
 
 import com.mojang.logging.LogUtils;
+import net.mcsweatshop.hexcastingadditions.common.events.ExecuteIotasEvent;
 import net.mcsweatshop.hexcastingadditions.common.hex.actions.Patterns;
 import net.mcsweatshop.hexcastingadditions.common.net.PacketHandler;
 import net.minecraft.client.Minecraft;
@@ -61,6 +62,7 @@ public class HexCastingAdditions {
 
     public HexCastingAdditions() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        modEventBus.register(ExecuteIotasEvent.class);
 
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);

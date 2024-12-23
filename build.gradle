@@ -199,6 +199,7 @@ dependencies {
 //    compileOnly "vazkii.patchouli:Patchouli:${minecraft_version}-${patchouliVersion}-FORGE"
     runtimeOnly fg.deobf("me.shedaniel.cloth:cloth-config-forge:$clothConfigVersion")
     runtimeOnly "thedarkcolour:kotlinforforge:${kotlinForForgeVersion}"
+    implementation group: 'io.github.kostaskougios', name: 'cloning', version: '1.10.3'
 
     // Example mod dependency with JEI - using fg.deobf() ensures the dependency is remapped to your development mappings
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime

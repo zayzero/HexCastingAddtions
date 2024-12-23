@@ -1,12 +1,9 @@
 package net.mcsweatshop.hexcastingadditions.mixin;
 
-import at.petrak.hexcasting.api.HexAPI;
 import at.petrak.hexcasting.api.casting.ActionRegistryEntry;
-import at.petrak.hexcasting.api.casting.castables.Action;
 import at.petrak.hexcasting.api.casting.math.HexDir;
 import at.petrak.hexcasting.api.casting.math.HexPattern;
 import at.petrak.hexcasting.common.lib.hex.HexActions;
-import com.electronwill.nightconfig.core.conversion.ConversionTable;
 import net.mcsweatshop.hexcastingadditions.HexCastingAdditions;
 import net.mcsweatshop.hexcastingadditions.common.hex.patterns.Chat;
 import net.mcsweatshop.hexcastingadditions.common.hex.patterns.OpEvalAsynch;
@@ -16,13 +13,12 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 import static at.petrak.hexcasting.common.lib.hex.HexActions.make;
 
 @Mixin(HexActions.class)
-public abstract class Whatever {
+public abstract class Patterns{
 
 
     @Shadow @Final private static Map<ResourceLocation, ActionRegistryEntry> ACTIONS;

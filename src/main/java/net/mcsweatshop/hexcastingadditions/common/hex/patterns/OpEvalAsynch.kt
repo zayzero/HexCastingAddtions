@@ -1,13 +1,13 @@
 package net.mcsweatshop.hexcastingadditions.common.hex.patterns
 
-import at.petrak.hexcasting.api.casting.arithmetic.predicates.IotaMultiPredicate.Either
+import at.petrak.hexcasting.api.casting.SpellList
 import at.petrak.hexcasting.api.casting.castables.Action
+import at.petrak.hexcasting.api.casting.circles.BlockEntityAbstractImpetus
+import at.petrak.hexcasting.api.casting.circles.CircleExecutionState
 import at.petrak.hexcasting.api.casting.eval.CastingEnvironment
 import at.petrak.hexcasting.api.casting.eval.OperationResult
-import at.petrak.hexcasting.api.casting.eval.vm.CastingImage
-import at.petrak.hexcasting.api.casting.eval.vm.CastingVM
-import at.petrak.hexcasting.api.casting.eval.vm.FrameFinishEval
-import at.petrak.hexcasting.api.casting.eval.vm.SpellContinuation
+import at.petrak.hexcasting.api.casting.eval.env.CircleCastEnv
+import at.petrak.hexcasting.api.casting.eval.vm.*
 import at.petrak.hexcasting.api.casting.evaluatable
 import at.petrak.hexcasting.api.casting.getDouble
 import at.petrak.hexcasting.api.casting.iota.Iota
@@ -15,17 +15,25 @@ import at.petrak.hexcasting.api.casting.iota.NullIota
 import at.petrak.hexcasting.api.casting.iota.PatternIota
 import at.petrak.hexcasting.api.casting.math.HexDir
 import at.petrak.hexcasting.api.casting.math.HexPattern
-import at.petrak.hexcasting.api.casting.mishaps.MishapInvalidIota
 import at.petrak.hexcasting.api.casting.mishaps.MishapInvalidOperatorArgs
-import at.petrak.hexcasting.api.casting.mishaps.MishapInvalidSpellDatumType
 import at.petrak.hexcasting.api.casting.mishaps.MishapNotEnoughArgs
 import at.petrak.hexcasting.common.lib.hex.HexEvalSounds
+import net.mcsweatshop.hexcastingadditions.common.events.ExecuteIotasEvent
+import net.mcsweatshop.hexcastingadditions.common.events.ModForgeEvents
 import net.mcsweatshop.hexcastingadditions.common.hex.utils.Utils
-import java.util.ArrayList
+import net.mcsweatshop.hexcastingadditions.mixininterfaces.ActionMethods
+import net.mcsweatshop.hexcastingadditions.mixininterfaces.AsyncRuns
+import net.minecraft.client.Minecraft
+import net.minecraft.core.BlockPos
+import net.minecraft.network.chat.Component
+import net.minecraft.server.level.ServerLevel
+import net.minecraftforge.common.MinecraftForge
+import net.minecraftforge.server.ServerLifecycleHooks
 import java.util.concurrent.CompletableFuture
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicInteger
-import java.util.concurrent.atomic.AtomicReference
+import kotlin.coroutines.*;
+
 
 object OpEvalAsynch : Action {
 
@@ -52,27 +60,49 @@ object OpEvalAsynch : Action {
                     continuation.pushFrame(FrameFinishEval) // install a break-boundary after eval
                 }
 
+        val instrsList = instrs.map({ SpellList.LList(0, listOf(it)) }, { it })
+        val frame = FrameEvaluate(instrsList, true)
+
         val holder=at.petrak.hexcasting.api.casting.SpellList.LList(0, listOf());
         val fakeFrame=at.petrak.hexcasting.api.casting.eval.vm.FrameEvaluate(holder, false)
         val image2 = image.withUsedOp().copy(stack = newStack)
-
-        val vm=CastingVM(image, env)
-        val what=CompletableFuture.runAsync {
-            TimeUnit.MILLISECONDS.sleep(time.get().toLong())
-            if (Utils.isList(iota)) {
-                val ssss = Utils.IotaCastList(iota)
-                val asList = ArrayList<Iota>()
-                ssss?.list?.forEach {
-                    asList.add(it)
-                }
-                vm.queueExecuteAndWrapIotas(asList, env.world)
-            } else if (iota.executable()) {
-                iota.execute(vm, env.world, continuation)
+        var enviorment=env
+        if (env is CircleCastEnv) enviorment=env
+        if (enviorment is CircleCastEnv) {
+            val idk=enviorment.circleState().impetusPos;
+            val impetus =enviorment.impetus
+            if(impetus is AsyncRuns) {
+                impetus.incrementAsync()
             }
+            castCircle(time, iota, image2, enviorment, continuation, idk,impetus)
         }
-//        val listIotas= listOf()
-//        CastingVM.empty(env).queueExecuteAndWrapIotas(listIotas, env.world)
-//        iota.e
-        return OperationResult(image2, listOf(), continuation.pushFrame(fakeFrame), HexEvalSounds.HERMES)
+        else cast(time,iota,image2,enviorment,continuation)
+        continuation.pushFrame(frame)
+
+
+        return OperationResult(image2, listOf(), newCont.pushFrame(fakeFrame), HexEvalSounds.HERMES)
     }
+
+    private fun cast(time: AtomicInteger, iota: Iota, image: CastingImage, env: CastingEnvironment, cont: SpellContinuation): CompletableFuture<Void>? =
+            CompletableFuture.runAsync {
+                TimeUnit.MILLISECONDS.sleep(time.get().toLong())
+                ModForgeEvents.toExecute.add(ExecuteIotasEvent(time,iota,image,env,cont,null,null))
+            }
+    private fun castCircle(time: AtomicInteger, iota: Iota, image: CastingImage, env: CircleCastEnv, cont: SpellContinuation, pos: BlockPos, impetus: BlockEntityAbstractImpetus?) {
+        CompletableFuture.delayedExecutor(time.get().toLong(),TimeUnit.MILLISECONDS).execute { castCircleWrap(time,iota,image,env,cont,pos,impetus) }
+    }
+    private fun castCircleWrap(time: AtomicInteger, iota: Iota, image: CastingImage, env: CircleCastEnv, cont: SpellContinuation, pos: BlockPos, impetus: BlockEntityAbstractImpetus?) {
+        TimeUnit.MILLISECONDS.sleep(time.get().toLong())
+        ModForgeEvents.toExecute.add(ExecuteIotasEvent(time,iota,image,env,cont,pos,impetus))
+
+    }
+    private fun tellPlayers(msg: String){
+        ServerLifecycleHooks.getCurrentServer().playerList.players.forEach {
+            it.sendSystemMessage(Component.literal(msg))
+        }
+    }
+    private fun blockEntityExists(pos: BlockPos,world: ServerLevel){
+        tellPlayers("doesnt exists as entity: "+(world.getBlockEntity(pos)==null))
+    }
+
 }

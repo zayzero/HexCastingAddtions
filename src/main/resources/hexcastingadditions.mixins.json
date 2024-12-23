@@ -5,8 +5,11 @@
   "refmap": "hexcastingadditions.refmap.json",
   "minVersion": "0.8",
   "mixins": [
-    "Test",
-    "Whatever"
+    "ActionOverrides",
+    "CircleEnvironment",
+    "Patterns",
+    "PauseEndExecutionCastingCircle",
+    "VMOverrides"
   ],
   "client": [
   ],
