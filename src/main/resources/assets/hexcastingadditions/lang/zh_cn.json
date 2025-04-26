@@ -1,0 +1,12 @@
+{
+    "hexcastingadditions.asynch": "在等待给定的tick后执行列表中的法术；该符文之后的法术将会立即执行而非延时执行。",
+    "hexcastingadditions.chat": "将一个iota广播在聊天框中，所有玩家都能看见该广播信息。",
+    "hexcasting.action.hexcastingadditions:chat": "搬运工之策略",
+    "hexcasting.action.hexcastingadditions:asynch": "面纱之策略",
+    "hexcasting.action.hexcastingadditions:tostring": "抄写家之纯化",
+    "hexcasting.action.hexcastingadditions:readstring": "作家之精思",
+    "hexcastingadditions.book": "新增符咒",
+    "hexcastingadditions.string": "字符串符咒",
+    "hexcastingadditions.tostring": "接收栈顶的iota并将其转为字符串。若栈顶iota为玩家将会返回其名称，若栈顶iota为物品则将返回其物品id",
+    "hexcastingadditions.readstring": "读取副手物品的内容并将对应字符串压入栈顶。若物品为书籍将会读取其内容，否则将读取物品id"
+}
