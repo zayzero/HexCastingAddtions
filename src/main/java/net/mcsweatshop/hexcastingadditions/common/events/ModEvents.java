@@ -2,6 +2,7 @@ package net.mcsweatshop.hexcastingadditions.common.events;
 
 import net.mcsweatshop.hexcastingadditions.HexCastingAdditions;
 import net.mcsweatshop.hexcastingadditions.common.net.PacketHandler;
+import net.mcsweatshop.hexcastingadditions.common.util.ItemAdditions;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;

@@ -7,6 +7,7 @@
   "mixins": [
     "ActionOverrides",
     "CircleEnvironment",
+    "HexIotaTypesInjection",
     "Patterns",
     "PauseEndExecutionCastingCircle",
     "VMOverrides"

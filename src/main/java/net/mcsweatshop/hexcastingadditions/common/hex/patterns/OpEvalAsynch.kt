@@ -17,6 +17,7 @@ import at.petrak.hexcasting.api.casting.math.HexDir
 import at.petrak.hexcasting.api.casting.math.HexPattern
 import at.petrak.hexcasting.api.casting.mishaps.MishapInvalidOperatorArgs
 import at.petrak.hexcasting.api.casting.mishaps.MishapNotEnoughArgs
+import at.petrak.hexcasting.api.casting.mishaps.circle.MishapNoSpellCircle
 import at.petrak.hexcasting.common.lib.hex.HexEvalSounds
 import net.mcsweatshop.hexcastingadditions.common.events.ExecuteIotasEvent
 import net.mcsweatshop.hexcastingadditions.common.events.ModForgeEvents
@@ -43,6 +44,7 @@ object OpEvalAsynch : Action {
         if (!iota.executable()&&!Utils.isList(iota)) throw MishapInvalidOperatorArgs(listOf(iota))
         val ioa = stack.getDouble(stack.lastIndex)
         stack.removeLastOrNull() ?: throw MishapNotEnoughArgs(2, 1)
+
 //        if (!Utils.isDouble(ioa))
         return exec(env, image, continuation, stack, iota, ioa)
     }
@@ -67,16 +69,16 @@ object OpEvalAsynch : Action {
         val fakeFrame=at.petrak.hexcasting.api.casting.eval.vm.FrameEvaluate(holder, false)
         val image2 = image.withUsedOp().copy(stack = newStack)
         var enviorment=env
-        if (env is CircleCastEnv) enviorment=env
-        if (enviorment is CircleCastEnv) {
-            val idk=enviorment.circleState().impetusPos;
-            val impetus =enviorment.impetus
-            if(impetus is AsyncRuns) {
-                impetus.incrementAsync()
-            }
-            castCircle(time, iota, image2, enviorment, continuation, idk,impetus)
+        if (env !is CircleCastEnv)
+            throw MishapNoSpellCircle()
+
+        enviorment=env
+        val idk=enviorment.circleState().impetusPos;
+        val impetus =enviorment.impetus
+        if(impetus is AsyncRuns) {
+            impetus.incrementAsync()
         }
-        else cast(time,iota,image2,enviorment,continuation)
+        castCircle(time, iota, image2, enviorment, continuation, idk,impetus)
         continuation.pushFrame(frame)
 
 
