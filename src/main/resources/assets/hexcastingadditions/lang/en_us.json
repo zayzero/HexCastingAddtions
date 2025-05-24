@@ -1,9 +1,25 @@
 {
   "hexcastingadditions.asynch": "runs a spell after the given delay; however any spells that come after it will not wait and will be ran at the same time",
   "hexcastingadditions.chat": "everyone will see the given value in chat",
-  "hexcasting.action.hexcastingadditions:chat": "Carrier's Number",
-  "hexcasting.action.hexcastingadditions:asynch": "Veil's Gambit",
-  "hexcasting.action.hexcastingadditions:chat": "Carrier's Gambit",
-  "hexcasting.action.hexcastingadditions:asynch": "Veil's Gambit",
-  "hexcastingadditions.book": "Additional Patterns"
+  "hexcasting.action.hexcastingadditions:chat": "Carrier's Reflection",
+  "hexcasting.action.hexcastingadditions:asynch": "Veil's Reflection",
+  "hexcasting.action.hexcastingadditions:tostring": "Penman Purification",
+  "hexcasting.action.hexcastingadditions:readstring": "Author Purification",
+  "hexcasting.action.hexcastingadditions:substring": "Segment Exaltation",
+  "hexcasting.action.hexcastingadditions:concatstring": "Concatenation Distillation",
+  "hexcasting.action.hexcastingadditions:stringtodouble": "Mathematic Purification",
+  "hexcasting.action.hexcastingadditions:stringlen": "Length Purification",
+  "hexcastingadditions.book": "Additional Patterns",
+  "hexcastingadditions.string": "String Patterns",
+  "hexcastingadditions.tostring": "This will convert the iota at the top into a string. If the iota is a player will return the player name; if the iota is an item will return the item type",
+  "hexcastingadditions.readstring": "Read text from your offhand if its a book; otherwise reads the name of the item.",
+  "hexcastingadditions.substring": "Will get a segment of the string",
+  "hexcastingadditions.concatstring": "Takes two strings and puts them togethers. \"a\" + \"b\" -> \"ab\"",
+  "hexcastingadditions.stringtodouble": "Converts a string into a double",
+  "hexcastingadditions.stringlen": "returns the amount of characters in a string",
+
+
+
+
+  "hexcastingadditions.mishap.unparsablenumber": "attempted to parse %s as a number"
 }
