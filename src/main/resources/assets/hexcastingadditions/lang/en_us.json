@@ -1,9 +1,76 @@
 {
+
+
+  "hexcasting.action.hexcastingadditions:chat": "Carrier's Reflection",
+
+  "hexcasting.action.hexcastingadditions:asynch": "Veil's Reflection",
+
+  "hexcasting.action.hexcastingadditions:tostring": "Penman Purification",
+  "hexcasting.action.hexcastingadditions:readstring": "Author Purification",
+  "hexcasting.action.hexcastingadditions:substring": "Segment Exaltation",
+  "hexcasting.action.hexcastingadditions:concatstring": "Concatenation Distillation",
+  "hexcasting.action.hexcastingadditions:stringtodouble": "Mathematic Purification",
+  "hexcasting.action.hexcastingadditions:stringlen": "Length Purification",
+
+  "hexcasting.action.hexcastingadditions:changedelay": "Change Delay",
+  "hexcasting.action.hexcastingadditions:tocodepoint": "Reference Purification",
+  "hexcasting.action.hexcastingadditions:fromcodepoint": "Character Purification",
+  "hexcasting.action.hexcastingadditions:isstringdouble": "Is Number Purification",
+  "hexcasting.action.hexcastingadditions:stringsegment": "Segmentation Distillation",
+  "hexcasting.action.hexcastingadditions:patternstring": "Pattern Distillation",
+  "hexcasting.action.hexcastingadditions:indexof": "Index Distillation",
+  "hexcasting.action.hexcastingadditions:charat": "Character Distillation",
+  "hexcasting.action.hexcastingadditions:emptystring": "Empty String",
+
+  "hexcasting.action.hexcastingadditions:handitemiota": "Held Item Purification",
+  "hexcasting.action.hexcastingadditions:armoritemiota": "Armor Item Purification",
+  "hexcasting.action.hexcastingadditions:blockentityitem": "Block Item Purification",
+
+  "hexcasting.action.hexcastingadditions:grabitem": "Item Teleportation",
+  "hexcasting.action.hexcastingadditions:swapitem": "Item Swap",
+
+
+  "hexcastingadditions.book": "Additional Patterns",
+  "hexcastingadditions.string": "String Patterns",
+  "hexcastingadditions.items": "Item Patterns",
+  "hexcastingadditions.itemspells": "Item Spells",
+
+
+  "hexcastingadditions.tostring": "This will convert the iota at the top into a string. If the iota is a player will return the player name; if the iota is an item will return the item type",
+  "hexcastingadditions.readstring": "Read text from your offhand if its a book; otherwise reads the name of the item.",
+  "hexcastingadditions.substring": "Will get a segment of the string",
+  "hexcastingadditions.concatstring": "Takes two strings and puts them togethers. \"a\" + \"b\" -> \"ab\"",
+  "hexcastingadditions.stringtodouble": "Converts a string into a double",
+  "hexcastingadditions.stringlen": "returns the amount of characters in a string",
+  "hexcastingadditions.tocodepoint": "gets a number that references the character",
+  "hexcastingadditions.fromcodepoint": "gets the character with number reference",
+  "hexcastingadditions.isstringdouble": "checks that the string given is a number",
+  "hexcastingadditions.stringsegment": "splits the string by the other string, and returns a list of all the segments. If the second string is empty it gets a list of letters",
+  "hexcastingadditions.patternstring": "takes in a pattern and a direction and returns a pattern. valid letters are: a,q,w,e,d",
+  "hexcastingadditions.patternstring.2": "And directions are:$(br)0 -> WEST,$(br)1 -> NORTH_WEST,$(br)2 -> NORTH_EAST,$(br)3 -> EAST,$(br)4 -> SOUTH_EAST,$(br)5 -> SOUTH_WEST",
+  "hexcastingadditions.indexof": "Gets the index of the string and returns null if its not contained",
+  "hexcastingadditions.emptystring": "make an empty string",
+  "hexcastingadditions.charat": "returns the character from the index given",
+
+  "hexcastingadditions.handitemiota": "returns the item in your hand as an iota",
+  "hexcastingadditions.armoritemiota": "returns an armor slot as an iota",
+  "hexcastingadditions.blockentityitem": "returns the item from the given block and slot",
+
+  "hexcastingadditions.grabitem": "gets the item and puts it in your inventory consumes 1 dust every 100 blocks",
+  "hexcastingadditions.swapitem": "swaps the items consumes 1 dust every 100 blocks",
+
+  "hexcastingadditions.changedelay": "changes the delay on Veil's Accessory",
+
   "hexcastingadditions.asynch": "runs a spell after the given delay; however any spells that come after it will not wait and will be ran at the same time",
   "hexcastingadditions.chat": "everyone will see the given value in chat",
-  "hexcasting.action.hexcastingadditions:chat": "Carrier's Number",
-  "hexcasting.action.hexcastingadditions:asynch": "Veil's Gambit",
-  "hexcasting.action.hexcastingadditions:chat": "Carrier's Gambit",
-  "hexcasting.action.hexcastingadditions:asynch": "Veil's Gambit",
-  "hexcastingadditions.book": "Additional Patterns"
+
+  "hexcasting.mishap.unparsablenumber": "attempted to parse %s as a number",
+  "hexcasting.mishap.unexpecteditemreference": "attempted to use %s which is a non-real item reference",
+
+
+  "hexcastingadditions.veiltrinket": "Veil's Accessory WIP",
+  "hexcastingadditions.veiltrinket.page.1": "This has not been finished being implemented",
+  "hexcastingadditions.veiltrinket.page.2": "The idea is for the accessory to run the pattern with the given delay while in a player inventory",
+  "item.hexcastingadditions.veiltrinket":"Veil's Accessory",
+  "hexcastingadditions.veiltrinket.delay": "Delay: "
 }

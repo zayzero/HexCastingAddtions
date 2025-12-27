@@ -1,0 +1,58 @@
+{
+    "name": "hexcastingadditions.string",
+    "category": "hexcasting:patterns",
+    "icon": "textures/item/string.png",
+    "sortnum": 6,
+    "advancement": "hexcasting:root",
+    "read_by_default": true,
+    "pages": [
+      {
+        "type": "hexcasting:pattern",
+        "op_id": "hexcastingadditions:tostring",
+        "anchor": "hexcastingadditions:tostring",
+        "input": "any",
+        "output": "string",
+        "text": "hexcastingadditions.tostring"
+      },
+      {
+        "type": "hexcasting:pattern",
+        "op_id": "hexcastingadditions:readstring",
+        "anchor": "hexcastingadditions:readstring",
+        "input": "",
+        "output": "string",
+        "text": "hexcastingadditions.readstring"
+      },
+      {
+        "type": "hexcasting:pattern",
+        "op_id": "hexcastingadditions:substring",
+        "anchor": "hexcastingadditions:substring",
+        "input": "string, num, num",
+        "output": "string",
+        "text": "hexcastingadditions.substring"
+      },
+      {
+        "type": "hexcasting:pattern",
+        "op_id": "hexcastingadditions:concatstring",
+        "anchor": "hexcastingadditions:concatstring",
+        "input": "string, string",
+        "output": "string",
+        "text": "hexcastingadditions.concatstring"
+      },
+      {
+        "type": "hexcasting:pattern",
+        "op_id": "hexcastingadditions:stringtodouble",
+        "anchor": "hexcastingadditions:stringtodouble",
+        "input": "string",
+        "output": "num",
+        "text": "hexcastingadditions.stringtodouble"
+      },
+      {
+        "type": "hexcasting:pattern",
+        "op_id": "hexcastingadditions:stringlen",
+        "anchor": "hexcastingadditions:stringlen",
+        "input": "string",
+        "output": "num",
+        "text": "hexcastingadditions.stringlen"
+      }
+    ]
+}

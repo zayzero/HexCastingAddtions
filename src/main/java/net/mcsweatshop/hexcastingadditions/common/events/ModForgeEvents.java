@@ -74,6 +74,7 @@ public class ModForgeEvents {
 
     @SubscribeEvent
     public static void tick(TickEvent.ServerTickEvent event){
+        if (ServerLifecycleHooks.getCurrentServer()==null) return;
         if (!toExecute.isEmpty()) {
             toExecute.forEach(ModForgeEvents::execute);
             toExecute.clear();
